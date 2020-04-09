@@ -26,6 +26,9 @@ class Order extends Component {
   };
 
   componentDidMount() {
+    if(sessionStorage.getItem('token') === null){
+      this.props.history.push('/login');
+    }
     axios.get('https://peddirst.herokuapp.com/api/items').then(response => {
       this.setState({ items: response.data });
       console.log(response);
